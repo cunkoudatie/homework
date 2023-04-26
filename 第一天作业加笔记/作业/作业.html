@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="never">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 100px 100px;
+    }
+
+    ul {
+      position: absolute;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      padding: 10px 15px;
+      gap: 40px;
+      text-align: center;
+    }
+
+    li {
+      position: relative;
+      display: block;
+      list-style: none;
+    }
+
+    p {
+      margin: 5px 0 0;
+      height: 44px;
+      color: #3377AA;
+      font-size: 13px;
+    }
+    a{
+      text-decoration: none;
+    }
+    img{
+      z-index: 2;
+    }
+    strong {
+      color: #E09015;
+      font-size: 13px;
+    }
+
+    .mouse {
+      position: absolute;
+      width: 270px;
+      height: 300px;
+      background-color:white;
+      z-index: 10;
+      top: 50px;
+      right: -310px;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+
+  </ul>
+  <button onclick="init()">图来</button>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    function init() {
+      // 生成一个 XMLHttpRequest对象
+      let db = new XMLHttpRequest()
+      // 发起请求，调用open方法来发送请求方式，第二个是请求对象
+      db.open("GET", "http://localhost:3000/posts")
+      // 发送请求
+      db.send()
+
+      // 监听请求状态
+      const ul = document.querySelector('ul')
+      db.onreadystatechange = function () {
+        console.log('db', db);
+        if (db.readyState === 4) {
+          const res = JSON.parse(db.responseText)
+          res.forEach(item => {
+            const li = document.createElement('li')
+
+            li.innerHTML = `<a href="${item.info.url}"><img src="${item.info.imgurl}" alt=""></a>
+                                             <p>${item.title}&nbsp &nbsp <strong>${item.info.pingfen}</strong></p>`
+            ul.appendChild(li)
+
+            // 添加一个鼠标移入事件
+            // 获取元素
+            const div = document.createElement('div')
+            div.className = 'mouse'
+            div.style.display = 'none'
+            div.innerHTML = `<a href="${item.info.url}"><h1>${item.title}</h1></a>
+                                <p>${item.info.pingfen}</p>
+                                <p>${item.info.yanyuan}</p>`
+            li.appendChild(div)
+            li.onmouseover = function () {
+              div.style.display = 'block'
+            }
+            li.onmouseout = function () {
+              div.style.display = 'none'
+            }
+          });
+        }
+      }
+    }
+
+  </script>
+</body>
+</html>

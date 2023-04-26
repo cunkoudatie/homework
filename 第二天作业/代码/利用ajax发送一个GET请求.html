@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>今天的励志骚话是:</h1>
+    <ul>
+
+    </ul>
+    <button onclick="init()">点我开始骚</button>
+    <script>
+        function init() {
+            // 向接口的发送请求
+            // 1，发送给一个XMLHttpRequest()
+            const sh = new XMLHttpRequest
+            // 2,发送请求，调用open方法来发送请求  第一个参数是请求方式 第二个参数是请求地址，请求时异步的
+            sh.open('GET', 'http://localhost:3000/word')
+            // 3,发送请求
+            sh.send()
+            // 4,监听请求的状态
+            const ul = document.querySelector('ul')
+            sh.onreadystatechange = function () {
+                if (sh.readyState === 4) {
+                    const res = JSON.parse(sh.responseText)  //responsrText 打印是数组
+                    res.forEach(item => {
+                        const li = document.createElement('li')
+                        li.innerHTML = item.content
+                        ul.appendChild('li')
+                    });
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

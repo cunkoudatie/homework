@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>今天的励志骚话是:</h1>
+    <ul>
+        
+    </ul>
+    <button onclick="init()">点我开始浪</button>
+    <script>
+        function init() {
+            // 利用ajax向接口的发送请求
+            // 1，发送给一个XMLHttpRequest()
+            let sh = new XMLHttpRequest()
+            // 2,发送请求，调用open方法来发送请求
+            sh.open('POST','http://localhost:3000/word')
+            // 3,发送请求
+            sh.setRequestHeader('Content-Type','application/json')
+            sh.send(JSON.stringify({
+                content:'活到老骚到老'
+            }))
+            // 4,监听请求的状态
+            sh.onreadystatechange = function(){  
+            }
+        }
+
+    </script>
+</body>
+
+</html>

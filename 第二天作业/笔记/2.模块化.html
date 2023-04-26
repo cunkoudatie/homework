@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type = 'module'>
+        import fn from './2-1.a.js'
+        import{a,b} from './2-1.a.js'
+        import{c,b as _b}from '/2-2.b.js'
+        console.log(fn(),c,b);
+    </script>
+</body>
+</html>
+
+<!-- 默认导出 和 分别导出 可以共存共存 -->

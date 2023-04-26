@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>发送 post请求</button>
+    <button>发送 delete请求</button>
+    <!-- axios是一个第三方库 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // 发送一个get请求，返回的是一个promise对象
+        axios.get('http://localhost:3000/word').then(res=>{
+            console.log((res.data));
+        })
+        // 发送一个post请求
+        document.querySelectorAll('button')[0].onclick = function(){
+            axios.post('http://localhost:3000/word',{content:'知之为知之，不知为不知。是知也'})
+        }
+        document.querySelectorAll('button')[1].onclick = function () {
+            axios.delete('http://localhost:3000/word/9')
+        }
+    </script>
+</body>
+</html>

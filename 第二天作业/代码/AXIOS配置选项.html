@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button>发送post请求</button>
+    <button>发送get请求</button>
+<!-- 第三方链接 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        axios.defaults.beseURL = "http://localhost:3000"
+        axios.defaults.timeout = 3000
+        // 添加一个请求拦截器
+        axios.interceptors.request.use(function (config) {
+            return config
+        })
+        //添加一个响应拦截器
+        document.querySelector('button').onclick = function(){
+            axios({
+                url:"/word",
+                method:'POST',
+                data:{
+                    content:'haha'
+                },
+            })
+        }
+        document.querySelectorAll('button')[1].onclick = function(){
+            axios.get('/word').then(res=>{
+                console.log(res,123)
+            })
+        }
+
+
+
+    </script>
+</body>
+</html>
