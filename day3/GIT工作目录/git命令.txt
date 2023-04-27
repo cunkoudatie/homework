@@ -1,4 +1,4 @@
-1，设置用户信息
+	1，设置用户信息
     git config --global user.name <username>
     git config --global user.email <mailaddress>
 
@@ -56,4 +56,7 @@ git branch 分支名
 git checkout 分支名称
 
 19 合并分支
-git merge 
+git merge  
+
+之前push的时候 没有把本地里面文件夹的.git仓库删掉 现在可以这样 把仓库删了重新创建一个 再传 即可 你先试试
+

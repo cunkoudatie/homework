@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- of 和 in 都可以当连接词 -->
+            <li v-for="(item,index) in friends">
+              序号：{{index}}--姓名：{{item.name}}--年龄：{{item.age}}--性别：{{item.gender}}
+              <button @click="del(index)" >点击这里删除数据</button>
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                friends: [
+                    {
+                        name: '马云',
+                        age: '3',
+                        gender: 'girl'
+                    },
+                    {
+                        name: 'b',
+                        age: '4',
+                        gender: 'girl'
+                    },
+                    {
+                        name: 'c',
+                        age: '4',
+                        gender: 'boy'
+                    }
+                ]
+            },
+            methods:{
+                del(index){
+                    // 删除对应的那条数据
+                    // 在一个数组中删除每个索引值的数组元素
+                    this.friends.splice(index, 1);
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

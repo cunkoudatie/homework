@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="count++"></button>
+        <h2 v-show="ishou">动态显示的标题</h2>
+    </div>
+    <script src="/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                // 如果count的值是偶数，h2显示
+                // count值奇数，h2隐藏
+                count: 0,
+                ishow: true
+            },
+            watch: {
+                // 监听data变化，如果data变了 执行回调函数
+                count(newValue,oldValue){
+                    if (newValue%2===0) {
+                        this.ishow = true
+                    }else{
+                        this.ishow = false
+                    }
+                }
+            }
+        })
+        console.log(vm);
+    </script>
+</body>
+
+</html>

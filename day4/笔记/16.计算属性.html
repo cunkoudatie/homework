@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 如果模板中能直接使用一个变量 那么这个变量一定被会挂vue实力身上 -->
+        <!-- 计算属性在调用的时候不要加 () -->
+        <h2>{{reverse()}}</h2>
+    </div>
+    <script src="/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello'
+            },
+            methods: {
+                reverse() {
+                    // 计算属性比如通过返回值的形式表达
+                    return this.msg.split('').reverse().join('')
+                }
+        }
+           /*  computed: {
+                reverse() {
+                    // 计算属性比如通过返回值的形式表达
+                    return this.msg.split('').reverse().join('')
+                }
+        } */
+        })
+        console.log(vm);
+    </script>
+</body>
+
+</html>
